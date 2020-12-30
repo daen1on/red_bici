@@ -4,11 +4,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 //L.marker([-34.6012424,-58.9238494]).addTo(map); 
 
-/** Punto azul bici
- * [
-                -34.5812424,
-                -58.9223494
-            ]
+/** Punto bici 2 * [-34.5812424, -58.9223494] //para probar en postman.
 */
 $.ajax({
     dataType: "json",

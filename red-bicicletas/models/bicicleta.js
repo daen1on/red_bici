@@ -1,8 +1,12 @@
 var Bicicleta = function(id, color, modelo, ubicacion ){
+    if (id!=""){
     this.id= id;
     this.color =color;
     this.modelo= modelo;
-    this.ubicacion =ubicacion;
+    this.ubicacion =ubicacion;}
+    else{
+        throw new Error(`no se peude crear bici sin Id`);
+    }
 }
 Bicicleta.prototype.toString =function(){
     return 'id: '+this.id+ ' | color: '+this.color;
