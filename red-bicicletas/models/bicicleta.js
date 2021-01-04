@@ -1,3 +1,46 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const bicicletaSchema = new Schema({
+    code: Number,
+    color: String,
+    modelo: String,
+    ubicacion: {
+        type: [Number], index: {type: '2dsphere', sparse: true}
+    }
+});
+
+bicicletaSchema.statics.createInstance = function(code, color, modelo, ubicacion){
+    return new this({
+        code: code,
+        color: color,
+        modelo: modelo,
+        ubicacion: ubicacion
+    });
+    
+};
+
+bicicletaSchema.methods.toString = function(){
+    return 'code: '+ this.code + ' | color: '+this.color;
+};
+
+
+bicicletaSchema.statics.allBicis = function (cb) {
+    return this.find({}, cb);
+};
+bicicletaSchema.statics.add = function (aBici, cb) {
+    this.create(aBici, cb);
+};
+bicicletaSchema.statics.findByCode = function (aCode, cb) {
+    return this.findOne({code: aCode}, cb);
+};
+
+bicicletaSchema.statics.removeByCode = function (aCode, cb) {
+    return this.deleteOne({code: aCode}, cb);
+};
+module.exports = mongoose.model('Bicicleta', bicicletaSchema);
+
+/*
 var Bicicleta = function(id, color, modelo, ubicacion ){
     if (id!=""){
     this.id= id;
@@ -8,9 +51,7 @@ var Bicicleta = function(id, color, modelo, ubicacion ){
         throw new Error(`no se peude crear bici sin Id`);
     }
 }
-Bicicleta.prototype.toString =function(){
-    return 'id: '+this.id+ ' | color: '+this.color;
-}
+
 
 Bicicleta.allBicis= [];
 Bicicleta.add = function(aBici){
@@ -38,4 +79,4 @@ Bicicleta.removeById = function(aBiciId){
 var b = new Bicicleta(2, 'azul','urbana',[-34.5812424,-58.9223494]);
 Bicicleta.add(a);
 Bicicleta.add(b);**/
-module.exports = Bicicleta;
+//module.exports = Bicicleta;*/
