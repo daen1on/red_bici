@@ -33,7 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
 app.use('/bicicletas', biciRouter);
 app.use('/api/bicicletas', biciAPIRouter);
 app.use('/api/usuarios',usuariosAPIRouter);
